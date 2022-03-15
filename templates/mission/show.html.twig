@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}détail de {{ mission.titre }}{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class=container">
+        <h1>{{ mission.titre }}</h1>
+        <div class="row">
+            <div class="col-8 description">
+                <h4 class="text-danger">Nom de code: {{ mission.nonCode }}</h4>
+                <div class="card-body">
+                    <h5 class="text-danger">Les infos générales:</h5>
+                    <p>Type de la mission: {{ mission.typeMission }}</p>
+                    <p>But de la mission: {{ mission.description }}</p>
+                    <p>Date du début de mission: {{ mission.dateDebut |date("d/m/Y") }}</p>
+                    <p>Date de fin de mission:{{ mission.dateFin |date("d/m/Y")}}</p>
+                    <p class="price"> <span class="">Statut:</span> {{ mission.statut }}</p>
+                    <p><span>Pays:</span> {{ mission.pays }}</p>
+
+                    <h5 class="text-danger">Les specialités:</h5>
+                    <ul>
+                        {% for specialite in mission.speciality %}
+                            <li>
+                                {{ specialite}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5 class="text-danger">Les agents:</h5>
+                    <ul>
+                        {% for agents in mission.agent %}
+                            <li>
+                                <span class="text-danger">{{ agents.firstname }} {{ agents.lastname }}</span>
+                                <br>
+                                date de naissance: {{ agents.dateNaissance |date("d/m/Y") }}
+                                <br>
+                                code: {{ agents.codeAuthentification }}
+                                <br>
+                                nationalité de l'agent: {{ agents.nationality }}
+                                <br>
+                                spécialité de l'agent:
+                                {% for specialitys in agents.speciality %}
+                                    <li> {{ specialitys }} </li>
+                                {% endfor%}
+
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5 class="text-danger">Les contacts:</h5>
+                    <ul>
+                        {% for contact in mission.contact %}
+                            <li><span class="text-danger">{{ contact.name }} {{ contact.lastname }}</span>
+                                <br>
+                                date de naissance: {{ contact.dateNaissance |date("d/m/Y") }}
+                                <br>
+                                Nom de code: {{ contact.nomCode }}
+                                <br>
+                                nationalité du contact: {{ contact.nationality }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <h5 class="text-danger">Les cibles:</h5>
+                    <ul>
+                        {% for cible in mission.cible %}
+                            <li>
+                                <span class="text-danger">{{ cible.firstname }} {{ cible.lastname }}</span>
+                                <br>
+                                date de naissance: {{ cible.dateNaissance |date("d/m/Y") }}
+                                <br>
+                                Nom de code: {{ cible.nameCode }}
+                                <br>
+                                Nationalité de la cible: {{ cible.nationality }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

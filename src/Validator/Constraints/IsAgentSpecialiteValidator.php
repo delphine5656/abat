@@ -20,14 +20,7 @@ class IsAgentSpecialiteValidator extends ConstraintValidator
         //permet d'avoir accès à toutes nos entity
         $value=$this->context->getRoot()->getData();
 
-        foreach ( $value ->getAgent() as $agent){
-            if($value->getSpeciality()->getId() === $agent-> getSpeciality()){ //si pas égal déclenche une erreur
-                $this->context->buildViolation($constraint->message)
-                    ->setParameter('{{agent}}', $value->getSpeciality())
-                    ->setParameter('{{speciality}}', $agent->getFirstname())
-                    ->addViolation();
 
-            }
-        }
+
     }
 }
