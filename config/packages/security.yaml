@@ -23,12 +23,6 @@ security:
                 check_path: login
                 enable_csrf: true
 
-
-
-
-
-
-
             logout:
                 path: app_logout
                 # where to redirect after logout
