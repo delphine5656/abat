@@ -118,7 +118,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     public function getSalt(): ?string
     {
-
+        return null;
     }
 
     /**
